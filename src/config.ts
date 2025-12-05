@@ -65,6 +65,17 @@ export type Config = {
 	 * The default speed to use for tunes that don't specify a separate default speed, in beats per minute.
 	 */
 	defaultSpeed: number;
+
+	/**
+	 * Whether to use a fixed width for the subdivision columns in the player.
+	 * 
+	 * If false, wide stroke names (like "rim" or shouts like "dance") will stretch the column width to fit. 
+	 * This means stroke names are always fully visible, but varying column widths makes rhythms harder to read.
+	 * 
+	 * If true, the column width will be fixed and the stroke names will be truncated if they are too wide.
+	 * This means stroke names may be overlap if there are too wide, but equal width of all columns makes rhythms easier to read.
+	 */
+	areColumnWidthsFixedInPlayer: boolean;
 };
 
 const config: Config = {
@@ -304,7 +315,9 @@ const config: Config = {
 
 	tuneOfTheYear: "The Roof Is on Fire",
 
-	defaultSpeed: 100
+	defaultSpeed: 100,
+
+	areColumnWidthsFixedInPlayer: true,
 };
 
 // Check some requirements for export so that we don't forget them at some point in the future

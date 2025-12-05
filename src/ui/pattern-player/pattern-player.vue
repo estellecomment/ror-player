@@ -233,7 +233,7 @@
 		</PatternPlayerToolbar>
 
 		<div class="bb-pattern-player-container" ref="containerRef">
-			<table class="bb-pattern-player" :class="`time-${pattern.time}`">
+			<table class="bb-pattern-player" :class="[`time-${pattern.time}`, { 'fixed-column-widths': config.areColumnWidthsFixedInPlayer }]">
 				<thead>
 					<tr>
 						<td colspan="2" class="instrument-operations">
@@ -306,9 +306,13 @@
 
 			.stroke-inner {
 				display: inline-block;
-				min-width: 2.7ex;
 				min-height: 1em;
 				text-decoration: none;
+				min-width: 2.7ex;
+			}
+			&.fixed-column-widths .stroke-inner {
+				width: 2.7ex;
+				min-width: unset;
 			}
 
 			thead td {
@@ -361,11 +365,19 @@
 				.stroke-inner {
 					min-width: 5.4ex;
 				}
+				&.fixed-column-widths .stroke-inner {
+					width: 5.4ex;
+					min-width: unset;
+				}
 			}
 
 			&.time-12 {
 				.stroke-inner {
 					min-width: 1ex;
+				}
+				&.fixed-column-widths .stroke-inner {
+					width: 1ex;
+					min-width: unset;
 				}
 
 				.stroke-0, .stroke-1, .stroke-3, .stroke-4, .stroke-6, .stroke-7, .stroke-9, .stroke-10 {
@@ -376,6 +388,10 @@
 			&.time-20 {
 				.stroke-inner {
 					min-width: 1ex;
+				}
+				&.fixed-column-widths .stroke-inner {
+					width: 1ex;
+					min-width: unset;
 				}
 
 				.stroke-0, .stroke-1, .stroke-2, .stroke-3,

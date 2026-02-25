@@ -329,8 +329,12 @@ for(const instr of Object.keys(config.instruments)) {
 if (config.startSongWithWhistleIn) {
 	// dynamically import defaultTunes to avoid circular dependency
 	import("./defaultTunes").then(({ default: defaultTunes }) => {
-		if (!defaultTunes["General Breaks"]?.patterns["Whistle in"]) {
+		const whistleInBreak = defaultTunes["General Breaks"]?.patterns["Whistle in"];
+		if (!whistleInBreak) {
 			throw new Error("config.startSongWithWhistleIn is true but pattern 'General Breaks' / 'Whistle in' does not exist.");
+		}
+		if (whistleInBreak.length !== 4) {
+			throw new Error("config.startSongWithWhistleIn is true but pattern 'General Breaks' / 'Whistle in' must be 4 beats long (got " + whistleInBreak.length + ").");
 		}
 	});
 }

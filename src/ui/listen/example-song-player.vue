@@ -71,10 +71,6 @@
 	const songParts = computed((): SongParts => {
 		const result = {} as SongParts;
 		let i = 0;
-		if (config.startSongWithWhistleIn) {
-			result[0] = allInstruments([ "General Breaks", "Whistle in" ])
-			i = 1;
-		}
 		for(const part of normalizedSong.value) {
 			result[i] = allInstruments([ part.tuneName, part.patternName ], part.instruments);
 			i += part.length / 4;

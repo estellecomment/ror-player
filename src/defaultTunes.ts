@@ -3428,6 +3428,16 @@ Object.defineProperty(defaultTunes, "firstInSorting", {
 	value: [ "General Breaks", "Special Breaks", "Shouting Breaks" ]
 });
 
+if (config.startSongWithWhistleIn) {
+	const whistleInBreak = defaultTunes["General Breaks"]?.patterns["Whistle in"];
+	if (!whistleInBreak) {
+		throw new Error("config.startSongWithWhistleIn is true but pattern 'General Breaks' / 'Whistle in' does not exist.");
+	}
+	if (whistleInBreak.length !== 4) {
+		throw new Error("config.startSongWithWhistleIn is true but pattern 'General Breaks' / 'Whistle in' must be 4 beats long (got " + whistleInBreak.length + ").");
+	}
+}
+
 interface DefaultTunesMethods {
 	getPattern(tuneName: string, patternName?: string): Pattern | undefined;
 	getPattern(patternReference: PatternReference): Pattern | undefined;

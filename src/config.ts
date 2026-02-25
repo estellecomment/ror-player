@@ -326,4 +326,13 @@ for(const instr of Object.keys(config.instruments)) {
 		throw new Error("Instrument key must be 2 characters long for `" + instr + "` due to pattern encoder.");
 }
 
+if (config.startSongWithWhistleIn) {
+	// dynamically import defaultTunes to avoid circular dependency
+	import("./defaultTunes").then(({ default: defaultTunes }) => {
+		if (!defaultTunes["General Breaks"]?.patterns["Whistle in"]) {
+			throw new Error("config.startSongWithWhistleIn is true but pattern 'General Breaks' / 'Whistle in' does not exist.");
+		}
+	});
+}
+
 export default config;
